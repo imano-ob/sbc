@@ -76,9 +76,18 @@
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#has -->
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-9;has">
-        <rdfs:domain rdf:resource="&renata;FOAF-modifiedOrganization"/>
         <rdfs:range rdf:resource="&renata;FOAF-modifiedOrganization"/>
+        <rdfs:domain rdf:resource="&renata;FOAF-modifiedOrganization"/>
         <owl:inverseOf rdf:resource="&untitled-ontology-9;partOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#isIn -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-9;isIn">
+        <rdfs:domain rdf:resource="&owl;Thing"/>
+        <rdfs:range rdf:resource="&owl;Thing"/>
     </owl:ObjectProperty>
     
 
@@ -105,8 +114,8 @@
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#partOf -->
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-9;partOf">
-        <rdfs:domain rdf:resource="&renata;FOAF-modifiedOrganization"/>
         <rdfs:range rdf:resource="&renata;FOAF-modifiedOrganization"/>
+        <rdfs:domain rdf:resource="&renata;FOAF-modifiedOrganization"/>
     </owl:ObjectProperty>
     
 
@@ -127,7 +136,6 @@
     <owl:ObjectProperty rdf:about="&untitled-ontology-9;publishedIn">
         <rdfs:range rdf:resource="&untitled-ontology-9;Magazine"/>
         <rdfs:domain rdf:resource="&untitled-ontology-9;MagazineArticle"/>
-        <owl:inverseOf rdf:resource="&untitled-ontology-9;contains"/>
     </owl:ObjectProperty>
     
 
@@ -195,6 +203,29 @@
 
     <owl:Class rdf:about="&untitled-ontology-9;ConferenceArticle">
         <rdfs:subClassOf rdf:resource="&untitled-ontology-9;Article"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#Continent -->
+
+    <owl:Class rdf:about="&untitled-ontology-9;Continent">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#Country -->
+
+    <owl:Class rdf:about="&untitled-ontology-9;Country">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&untitled-ontology-9;isIn"/>
+                <owl:onClass rdf:resource="&untitled-ontology-9;Continent"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -311,6 +342,13 @@
 
     <owl:Class rdf:about="&untitled-ontology-9;University">
         <rdfs:subClassOf rdf:resource="&renata;FOAF-modifiedOrganization"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&untitled-ontology-9;isIn"/>
+                <owl:onClass rdf:resource="&untitled-ontology-9;Country"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -340,14 +378,14 @@
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-9;cyclops">
         <rdf:type rdf:resource="&untitled-ontology-9;Student"/>
-        <renata:FOAF-modifiedfirstName>Scott</renata:FOAF-modifiedfirstName>
         <renata:FOAF-modifiedfamilyName>Summers</renata:FOAF-modifiedfamilyName>
-        <renata:FOAF-modifiedpublications rdf:resource="&untitled-ontology-9;lazors"/>
+        <renata:FOAF-modifiedfirstName>Scott</renata:FOAF-modifiedfirstName>
         <publisherOf rdf:resource="&untitled-ontology-9;lazors"/>
-        <publisherOf rdf:resource="&untitled-ontology-9;morelazors"/>
+        <renata:FOAF-modifiedpublications rdf:resource="&untitled-ontology-9;lazors"/>
         <renata:FOAF-modifiedpublications rdf:resource="&untitled-ontology-9;morelazors"/>
-        <renata:FOAF-modifiedpublications rdf:resource="&untitled-ontology-9;shoopdawhoop"/>
+        <publisherOf rdf:resource="&untitled-ontology-9;morelazors"/>
         <publisherOf rdf:resource="&untitled-ontology-9;shoopdawhoop"/>
+        <renata:FOAF-modifiedpublications rdf:resource="&untitled-ontology-9;shoopdawhoop"/>
     </owl:NamedIndividual>
     
 
@@ -390,6 +428,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#mentallazors -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-9;mentallazors"/>
+    
+
+
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#morelazors -->
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-9;morelazors">
@@ -405,11 +449,10 @@
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-9;professorx">
         <rdf:type rdf:resource="&untitled-ontology-9;Professor"/>
-
-        <renata:FOAF-modifiedfirstName>Charles</renata:FOAF-modifiedfirstName>
         <renata:FOAF-modifiedfamilyName>Xavier</renata:FOAF-modifiedfamilyName>
-        <publisherOf rdf:resource="&untitled-ontology-9;article1"/>
+        <renata:FOAF-modifiedfirstName>Charles</renata:FOAF-modifiedfirstName>
         <renata:FOAF-modifiedpublications rdf:resource="&untitled-ontology-9;article1"/>
+        <publisherOf rdf:resource="&untitled-ontology-9;article1"/>
         <belongsTo rdf:resource="&untitled-ontology-9;departamento"/>
     </owl:NamedIndividual>
     
@@ -448,6 +491,7 @@
             <rdf:Description rdf:about="&untitled-ontology-9;article1"/>
             <rdf:Description rdf:about="&untitled-ontology-9;cyclops"/>
             <rdf:Description rdf:about="&untitled-ontology-9;lazors"/>
+            <rdf:Description rdf:about="&untitled-ontology-9;mentallazors"/>
             <rdf:Description rdf:about="&untitled-ontology-9;morelazors"/>
             <rdf:Description rdf:about="&untitled-ontology-9;professorx"/>
             <rdf:Description rdf:about="&untitled-ontology-9;shoopdawhoop"/>
@@ -460,7 +504,6 @@
             <rdf:Description rdf:about="&untitled-ontology-9;article1"/>
             <rdf:Description rdf:about="&untitled-ontology-9;cyclops"/>
             <rdf:Description rdf:about="&untitled-ontology-9;lazors"/>
-            <rdf:Description rdf:about="&untitled-ontology-9;mentallazors"/>
             <rdf:Description rdf:about="&untitled-ontology-9;morelazors"/>
             <rdf:Description rdf:about="&untitled-ontology-9;professorx"/>
             <rdf:Description rdf:about="&untitled-ontology-9;shoopdawhoop"/>
