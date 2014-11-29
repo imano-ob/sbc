@@ -53,6 +53,16 @@
     
 
 
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#contains -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-9;contains">
+        <rdfs:domain rdf:resource="&untitled-ontology-9;Magazine"/>
+        <rdfs:range rdf:resource="&untitled-ontology-9;MagazineArticle"/>
+        <owl:inverseOf rdf:resource="&untitled-ontology-9;publishedIn"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#employs -->
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-9;employs">
@@ -112,6 +122,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#publishedIn -->
+
+    <owl:ObjectProperty rdf:about="&untitled-ontology-9;publishedIn">
+        <rdfs:range rdf:resource="&untitled-ontology-9;Magazine"/>
+        <rdfs:domain rdf:resource="&untitled-ontology-9;MagazineArticle"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#publisherOf -->
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-9;publisherOf">
@@ -119,6 +138,23 @@
         <rdfs:domain rdf:resource="&renata;FOAF-modifiedPerson"/>
         <rdfs:subPropertyOf rdf:resource="&renata;FOAF-modifiedmade"/>
     </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#yearOfPublication -->
+
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-9;yearOfPublication"/>
     
 
 
@@ -195,9 +231,23 @@
     
 
 
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#Magazine -->
+
+    <owl:Class rdf:about="&untitled-ontology-9;Magazine">
+        <rdfs:subClassOf rdf:resource="&renata;FOAF-modifiedDocument"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#MagazineArticle -->
 
     <owl:Class rdf:about="&untitled-ontology-9;MagazineArticle">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&untitled-ontology-9;publishedIn"/>
+                <owl:someValuesFrom rdf:resource="&untitled-ontology-9;Magazine"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&untitled-ontology-9;Article"/>
     </owl:Class>
     
@@ -312,6 +362,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#mentallazors -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-9;mentallazors"/>
+    
+
+
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#morelazors -->
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-9;morelazors">
@@ -341,7 +397,52 @@
         <rdf:type rdf:resource="&untitled-ontology-9;MagazineArticle"/>
         <renata:FOAF-modifiedtitle>ImmaFiringMyLazors</renata:FOAF-modifiedtitle>
         <publishedBy rdf:resource="&untitled-ontology-9;cyclops"/>
+        <publishedIn rdf:resource="&untitled-ontology-9;xismanos"/>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#xismanos -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-9;xismanos">
+        <rdf:type rdf:resource="&untitled-ontology-9;Magazine"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&untitled-ontology-9;article1"/>
+            <rdf:Description rdf:about="&untitled-ontology-9;cyclops"/>
+            <rdf:Description rdf:about="&untitled-ontology-9;lazors"/>
+            <rdf:Description rdf:about="&untitled-ontology-9;morelazors"/>
+            <rdf:Description rdf:about="&untitled-ontology-9;professorx"/>
+            <rdf:Description rdf:about="&untitled-ontology-9;shoopdawhoop"/>
+            <rdf:Description rdf:about="&untitled-ontology-9;xismanos"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="&untitled-ontology-9;article1"/>
+            <rdf:Description rdf:about="&untitled-ontology-9;cyclops"/>
+            <rdf:Description rdf:about="&untitled-ontology-9;lazors"/>
+            <rdf:Description rdf:about="&untitled-ontology-9;mentallazors"/>
+            <rdf:Description rdf:about="&untitled-ontology-9;morelazors"/>
+            <rdf:Description rdf:about="&untitled-ontology-9;professorx"/>
+            <rdf:Description rdf:about="&untitled-ontology-9;shoopdawhoop"/>
+            <rdf:Description rdf:about="&untitled-ontology-9;xismanos"/>
+        </owl:distinctMembers>
+    </rdf:Description>
 </rdf:RDF>
 
 
