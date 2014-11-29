@@ -2,9 +2,55 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX foaf: <http://www.ime.usp.br/~renata/FOAF-modified#>
+PREFIX foaf: <http://www.ime.usp.br/~renata/FOAF-modified>
 PREFIX onto: <http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#>
 
+1)
+SELECT DISTINCT ?student  WHERE
+{
+	?student onto:publisherOf ?article1.
+	?student rdf:type onto:Student.
+	?article1 onto:publishedIn onto:magazine.
+	?prof onto:publisherOf ?article2.
+	?article2 onto:publishedIn onto:magazine.
+	?student onto:publisherOf ?thesis.
+	?thesis onto:orientedBy ?prof.
+}
+
+2)
+SELECT DISTINCT ?prof  WHERE
+{
+	?oriented onto:publisherOf ?article1.
+	?article1 onto:publishedIn ?magazine.
+	?prof onto:publisherOf ?article2.
+	?article2 onto:publishedIn ?magazine.
+	?prof onto:oriented ?thesis.
+	?oriented onto:publisherOf ?thesis.
+}
+
+3)
+SELECT DISTINCT ?article  WHERE
+{
+	?article rdf:type onto:MagazineArticle.
+	?article onto:publishedBy ?aluno.
+	?aluno onto:publisherOf ?thesis.
+	?thesis rdf:type/rdfs:subClassOf onto:Thesis.
+	?article onto:publishedBy ?prof.
+	?prof rdf:type onto:Professor.
+}
+
+4)
+5)
+SELECT DISTINCT ?prof1 WHERE
+{
+	?prof2 onto:belongsTo ?derp.
+	?derp onto:partOf onto:IME.
+	?prof1 onto:publisherOf ?article.
+	?prof1 rdf:type onto:Professor.
+	?article onto:orientedBy ?prof2.
+}
+
+6)
 SELECT DISTINCT ?prof1 ?prof2 WHERE
 {
 	?prof1 onto:belongsTo ?derp.
@@ -13,3 +59,23 @@ SELECT DISTINCT ?prof1 ?prof2 WHERE
 	?prof2 onto:publisherOf ?article.
 	FILTER (!sameTerm(?prof1, ?prof2))
 }
+
+7)********
+SELECT DISTINCT ?prof1 WHERE
+{
+	?prof1 onto:publisherOf ?article.
+	?prof1 rdf:type onto:Professor.
+	?article rdf:type/rdfs:subClassOf onto:Article.
+	?article onto:yearOfPublication "1802"^^xsd:string.
+}
+
+8)********
+SELECT ?article  WHERE
+{
+	?article rdf:type onto:MagazineArticle.
+	?article onto:publishedBy ?prof.
+	?prof rdf:type onto:Professor.
+	?article onto:yearOfPublication "XX".
+}
+
+9)

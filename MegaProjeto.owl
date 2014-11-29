@@ -76,8 +76,8 @@
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#has -->
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-9;has">
-        <rdfs:range rdf:resource="&renata;FOAF-modifiedOrganization"/>
         <rdfs:domain rdf:resource="&renata;FOAF-modifiedOrganization"/>
+        <rdfs:range rdf:resource="&renata;FOAF-modifiedOrganization"/>
         <owl:inverseOf rdf:resource="&untitled-ontology-9;partOf"/>
     </owl:ObjectProperty>
     
@@ -86,8 +86,8 @@
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#isIn -->
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-9;isIn">
-        <rdfs:domain rdf:resource="&owl;Thing"/>
         <rdfs:range rdf:resource="&owl;Thing"/>
+        <rdfs:domain rdf:resource="&owl;Thing"/>
     </owl:ObjectProperty>
     
 
@@ -114,8 +114,8 @@
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#partOf -->
 
     <owl:ObjectProperty rdf:about="&untitled-ontology-9;partOf">
-        <rdfs:range rdf:resource="&renata;FOAF-modifiedOrganization"/>
         <rdfs:domain rdf:resource="&renata;FOAF-modifiedOrganization"/>
+        <rdfs:range rdf:resource="&renata;FOAF-modifiedOrganization"/>
     </owl:ObjectProperty>
     
 
@@ -163,7 +163,9 @@
 
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#yearOfPublication -->
 
-    <owl:DatatypeProperty rdf:about="&untitled-ontology-9;yearOfPublication"/>
+    <owl:DatatypeProperty rdf:about="&untitled-ontology-9;yearOfPublication">
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
     
 
 
@@ -222,8 +224,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&untitled-ontology-9;isIn"/>
-                <owl:onClass rdf:resource="&untitled-ontology-9;Continent"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:someValuesFrom rdf:resource="&untitled-ontology-9;Continent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -304,13 +305,17 @@
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#Professor -->
 
     <owl:Class rdf:about="&untitled-ontology-9;Professor">
-        <rdfs:subClassOf rdf:resource="&renata;FOAF-modifiedPerson"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&untitled-ontology-9;belongsTo"/>
-                <owl:someValuesFrom rdf:resource="&untitled-ontology-9;Department"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&renata;FOAF-modifiedPerson"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&untitled-ontology-9;belongsTo"/>
+                        <owl:someValuesFrom rdf:resource="&untitled-ontology-9;Department"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <owl:disjointWith rdf:resource="&untitled-ontology-9;Student"/>
     </owl:Class>
     
@@ -345,8 +350,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&untitled-ontology-9;isIn"/>
-                <owl:onClass rdf:resource="&untitled-ontology-9;Country"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:someValuesFrom rdf:resource="&untitled-ontology-9;Country"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -364,11 +368,31 @@
     
 
 
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#IME -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-9;IME">
+        <rdf:type rdf:resource="&untitled-ontology-9;Institute"/>
+        <partOf rdf:resource="&untitled-ontology-9;USP"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#USP -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-9;USP">
+        <rdf:type rdf:resource="&untitled-ontology-9;University"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#article1 -->
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-9;article1">
         <rdf:type rdf:resource="&untitled-ontology-9;ConferenceArticle"/>
+        <rdf:type rdf:resource="&untitled-ontology-9;MagazineArticle"/>
+        <yearOfPublication>1802</yearOfPublication>
         <renata:FOAF-modifiedtitle>AllYourSecret</renata:FOAF-modifiedtitle>
+        <publishedIn rdf:resource="&untitled-ontology-9;magazine"/>
         <publishedBy rdf:resource="&untitled-ontology-9;professorx"/>
     </owl:NamedIndividual>
     
@@ -378,14 +402,14 @@
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-9;cyclops">
         <rdf:type rdf:resource="&untitled-ontology-9;Student"/>
-        <renata:FOAF-modifiedfamilyName>Summers</renata:FOAF-modifiedfamilyName>
         <renata:FOAF-modifiedfirstName>Scott</renata:FOAF-modifiedfirstName>
-        <publisherOf rdf:resource="&untitled-ontology-9;lazors"/>
+        <renata:FOAF-modifiedfamilyName>Summers</renata:FOAF-modifiedfamilyName>
         <renata:FOAF-modifiedpublications rdf:resource="&untitled-ontology-9;lazors"/>
-        <renata:FOAF-modifiedpublications rdf:resource="&untitled-ontology-9;morelazors"/>
+        <publisherOf rdf:resource="&untitled-ontology-9;lazors"/>
         <publisherOf rdf:resource="&untitled-ontology-9;morelazors"/>
-        <publisherOf rdf:resource="&untitled-ontology-9;shoopdawhoop"/>
+        <renata:FOAF-modifiedpublications rdf:resource="&untitled-ontology-9;morelazors"/>
         <renata:FOAF-modifiedpublications rdf:resource="&untitled-ontology-9;shoopdawhoop"/>
+        <publisherOf rdf:resource="&untitled-ontology-9;shoopdawhoop"/>
     </owl:NamedIndividual>
     
 
@@ -394,6 +418,7 @@
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-9;departamento">
         <rdf:type rdf:resource="&untitled-ontology-9;Department"/>
+        <partOf rdf:resource="&untitled-ontology-9;IME"/>
     </owl:NamedIndividual>
     
 
@@ -418,12 +443,24 @@
     
 
 
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#magazineArticle1 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-9;magazineArticle1">
+        <rdf:type rdf:resource="&untitled-ontology-9;MagazineArticle"/>
+        <renata:FOAF-modifiedtitle>Magnetism</renata:FOAF-modifiedtitle>
+        <yearOfPublication>1890</yearOfPublication>
+        <publishedBy rdf:resource="&untitled-ontology-9;magneto"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#magneto -->
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-9;magneto">
         <rdf:type rdf:resource="&untitled-ontology-9;Professor"/>
         <publisherOf rdf:resource="&untitled-ontology-9;article1"/>
         <belongsTo rdf:resource="&untitled-ontology-9;departamento"/>
+        <publisherOf rdf:resource="&untitled-ontology-9;shoopdawhoop"/>
     </owl:NamedIndividual>
     
 
@@ -440,6 +477,7 @@
         <rdf:type rdf:resource="&untitled-ontology-9;PhDThesis"/>
         <renata:FOAF-modifiedtitle>MoreLazors</renata:FOAF-modifiedtitle>
         <publishedBy rdf:resource="&untitled-ontology-9;cyclops"/>
+        <publishedIn rdf:resource="&untitled-ontology-9;magazine"/>
         <orientedBy rdf:resource="&untitled-ontology-9;professorx"/>
     </owl:NamedIndividual>
     
@@ -449,11 +487,15 @@
 
     <owl:NamedIndividual rdf:about="&untitled-ontology-9;professorx">
         <rdf:type rdf:resource="&untitled-ontology-9;Professor"/>
-        <renata:FOAF-modifiedfamilyName>Xavier</renata:FOAF-modifiedfamilyName>
         <renata:FOAF-modifiedfirstName>Charles</renata:FOAF-modifiedfirstName>
-        <renata:FOAF-modifiedpublications rdf:resource="&untitled-ontology-9;article1"/>
+        <renata:FOAF-modifiedfamilyName>Xavier</renata:FOAF-modifiedfamilyName>
         <publisherOf rdf:resource="&untitled-ontology-9;article1"/>
+        <renata:FOAF-modifiedmade rdf:resource="&untitled-ontology-9;article1"/>
+        <renata:FOAF-modifiedpublications rdf:resource="&untitled-ontology-9;article1"/>
         <belongsTo rdf:resource="&untitled-ontology-9;departamento"/>
+        <oriented rdf:resource="&untitled-ontology-9;lazors"/>
+        <oriented rdf:resource="&untitled-ontology-9;morelazors"/>
+        <oriented rdf:resource="&untitled-ontology-9;tese1"/>
     </owl:NamedIndividual>
     
 
@@ -464,7 +506,28 @@
         <rdf:type rdf:resource="&untitled-ontology-9;MagazineArticle"/>
         <renata:FOAF-modifiedtitle>ImmaFiringMyLazors</renata:FOAF-modifiedtitle>
         <publishedBy rdf:resource="&untitled-ontology-9;cyclops"/>
+        <publishedIn rdf:resource="&untitled-ontology-9;magazine"/>
+        <publishedBy rdf:resource="&untitled-ontology-9;magneto"/>
         <publishedIn rdf:resource="&untitled-ontology-9;xismanos"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#subprof -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-9;subprof">
+        <rdf:type rdf:resource="&untitled-ontology-9;Professor"/>
+        <publisherOf rdf:resource="&untitled-ontology-9;tese1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#tese1 -->
+
+    <owl:NamedIndividual rdf:about="&untitled-ontology-9;tese1">
+        <rdf:type rdf:resource="&untitled-ontology-9;PhDThesis"/>
+        <yearOfPublication>1993</yearOfPublication>
+        <orientedBy rdf:resource="&untitled-ontology-9;professorx"/>
     </owl:NamedIndividual>
     
 
