@@ -306,16 +306,12 @@
 
     <owl:Class rdf:about="&untitled-ontology-9;Professor">
         <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&renata;FOAF-modifiedPerson"/>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="&untitled-ontology-9;belongsTo"/>
-                        <owl:someValuesFrom rdf:resource="&untitled-ontology-9;Department"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&untitled-ontology-9;belongsTo"/>
+                <owl:someValuesFrom rdf:resource="&untitled-ontology-9;Department"/>
+            </owl:Restriction>
         </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&renata;FOAF-modifiedPerson"/>
         <owl:disjointWith rdf:resource="&untitled-ontology-9;Student"/>
     </owl:Class>
     
