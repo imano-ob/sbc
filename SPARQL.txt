@@ -60,22 +60,22 @@ SELECT DISTINCT ?prof1 ?prof2 WHERE
 	FILTER (!sameTerm(?prof1, ?prof2))
 }
 
-7)********
+7)
 SELECT DISTINCT ?prof1 WHERE
 {
 	?prof1 onto:publisherOf ?article.
 	?prof1 rdf:type onto:Professor.
 	?article rdf:type/rdfs:subClassOf onto:Article.
-	?article onto:yearOfPublication "1802"^^xsd:string.
+	?article onto:yearOfPublication "1802"^^rdfs:Literal.
 }
 
-8)********
+8)
 SELECT ?article  WHERE
 {
 	?article rdf:type onto:MagazineArticle.
 	?article onto:publishedBy ?prof.
 	?prof rdf:type onto:Professor.
-	?article onto:yearOfPublication "XX".
+	?article onto:yearOfPublication "XX"^^rdfs:Literal.
 }
 
 9)

@@ -389,8 +389,8 @@
     <owl:NamedIndividual rdf:about="&projeto;article1">
         <rdf:type rdf:resource="&projeto;ConferenceArticle"/>
         <rdf:type rdf:resource="&projeto;MagazineArticle"/>
-        <FOAF-modified:title>AllYourSecret</FOAF-modified:title>
-        <yearOfPublication>1802</yearOfPublication>
+        <yearOfPublication rdf:datatype="&rdfs;Literal">1802</yearOfPublication>
+        <FOAF-modified:title rdf:datatype="&rdfs;Literal">AllYourSecret</FOAF-modified:title>
         <publishedIn rdf:resource="&projeto;magazine"/>
         <publishedBy rdf:resource="&projeto;professorx"/>
     </owl:NamedIndividual>
@@ -401,8 +401,8 @@
 
     <owl:NamedIndividual rdf:about="&projeto;cyclops">
         <rdf:type rdf:resource="&projeto;Student"/>
-        <FOAF-modified:familyName>Summers</FOAF-modified:familyName>
-        <FOAF-modified:firstName>Scott</FOAF-modified:firstName>
+        <FOAF-modified:firstName rdf:datatype="&rdfs;Literal">Scott</FOAF-modified:firstName>
+        <FOAF-modified:familyName rdf:datatype="&rdfs;Literal">Summers</FOAF-modified:familyName>
         <publisherOf rdf:resource="&projeto;lazors"/>
         <FOAF-modified:publications rdf:resource="&projeto;lazors"/>
         <FOAF-modified:publications rdf:resource="&projeto;morelazors"/>
