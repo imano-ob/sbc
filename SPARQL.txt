@@ -2,7 +2,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX foaf: <http://www.ime.usp.br/~renata/FOAF-modified>
+PREFIX foaf: <http://www.ime.usp.br/~renata/FOAF-modified#>
 PREFIX onto: <http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#>
 
 1)
