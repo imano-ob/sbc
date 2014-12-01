@@ -85,11 +85,20 @@
     
 
 
-    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/MegaProjeto#isIn -->
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/MegaProjeto#locatedIn -->
 
-    <owl:ObjectProperty rdf:about="&projeto;isIn">
+    <owl:ObjectProperty rdf:about="&projeto;locatedIn">
+        <rdfs:range rdf:resource="&projeto;Location"/>
         <rdfs:domain rdf:resource="&owl;Thing"/>
-        <rdfs:range rdf:resource="&owl;Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/MegaProjeto#madeIn -->
+
+    <owl:ObjectProperty rdf:about="&projeto;madeIn">
+        <rdfs:domain rdf:resource="&projeto;Thesis"/>
+        <rdfs:range rdf:resource="&projeto;University"/>
     </owl:ObjectProperty>
     
 
@@ -215,7 +224,7 @@
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/MegaProjeto#Continent -->
 
     <owl:Class rdf:about="&projeto;Continent">
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+        <rdfs:subClassOf rdf:resource="&projeto;Location"/>
     </owl:Class>
     
 
@@ -223,10 +232,10 @@
     <!-- http://www.semanticweb.org/renan/ontologies/2014/10/MegaProjeto#Country -->
 
     <owl:Class rdf:about="&projeto;Country">
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+        <rdfs:subClassOf rdf:resource="&projeto;Location"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&projeto;isIn"/>
+                <owl:onProperty rdf:resource="&projeto;locatedIn"/>
                 <owl:someValuesFrom rdf:resource="&projeto;Continent"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -263,6 +272,14 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="&projeto;University"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/MegaProjeto#Location -->
+
+    <owl:Class rdf:about="&projeto;Location">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
     </owl:Class>
     
 
@@ -348,8 +365,8 @@
         <rdfs:subClassOf rdf:resource="&FOAF-modified;Organization"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&projeto;isIn"/>
-                <owl:someValuesFrom rdf:resource="&projeto;Country"/>
+                <owl:onProperty rdf:resource="&projeto;locatedIn"/>
+                <owl:someValuesFrom rdf:resource="&projeto;Location"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -372,6 +389,7 @@
     <owl:NamedIndividual rdf:about="&projeto;IME">
         <rdf:type rdf:resource="&projeto;Institute"/>
         <partOf rdf:resource="&projeto;USP"/>
+        <has rdf:resource="&projeto;departamento"/>
     </owl:NamedIndividual>
     
 
@@ -380,6 +398,8 @@
 
     <owl:NamedIndividual rdf:about="&projeto;USP">
         <rdf:type rdf:resource="&projeto;University"/>
+        <has rdf:resource="&projeto;IME"/>
+        <locatedIn rdf:resource="&projeto;europa"/>
     </owl:NamedIndividual>
     
 
@@ -418,6 +438,14 @@
     <owl:NamedIndividual rdf:about="&projeto;departamento">
         <rdf:type rdf:resource="&projeto;Department"/>
         <partOf rdf:resource="&projeto;IME"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/renan/ontologies/2014/10/MegaProjeto#europa -->
+
+    <owl:NamedIndividual rdf:about="&projeto;europa">
+        <rdf:type rdf:resource="&projeto;Continent"/>
     </owl:NamedIndividual>
     
 
@@ -526,6 +554,7 @@
     <owl:NamedIndividual rdf:about="&projeto;tese1">
         <rdf:type rdf:resource="&projeto;PhDThesis"/>
         <yearOfPublication>1993</yearOfPublication>
+        <madeIn rdf:resource="&projeto;USP"/>
         <orientedBy rdf:resource="&projeto;professorx"/>
     </owl:NamedIndividual>
     
@@ -553,6 +582,7 @@
             <rdf:Description rdf:about="&projeto;article1"/>
             <rdf:Description rdf:about="&projeto;cyclops"/>
             <rdf:Description rdf:about="&projeto;lazors"/>
+            <rdf:Description rdf:about="&projeto;mentallazors"/>
             <rdf:Description rdf:about="&projeto;morelazors"/>
             <rdf:Description rdf:about="&projeto;professorx"/>
             <rdf:Description rdf:about="&projeto;shoopdawhoop"/>
@@ -565,7 +595,6 @@
             <rdf:Description rdf:about="&projeto;article1"/>
             <rdf:Description rdf:about="&projeto;cyclops"/>
             <rdf:Description rdf:about="&projeto;lazors"/>
-            <rdf:Description rdf:about="&projeto;mentallazors"/>
             <rdf:Description rdf:about="&projeto;morelazors"/>
             <rdf:Description rdf:about="&projeto;professorx"/>
             <rdf:Description rdf:about="&projeto;shoopdawhoop"/>

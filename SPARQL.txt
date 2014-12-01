@@ -3,7 +3,7 @@ PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX foaf: <http://www.ime.usp.br/~renata/FOAF-modified#>
-PREFIX onto: <http://www.semanticweb.org/renan/ontologies/2014/10/untitled-ontology-9#>
+PREFIX onto: <http://www.semanticweb.org/renan/ontologies/2014/10/MegaProjeto#>
 
 1)
 SELECT DISTINCT ?student  WHERE
